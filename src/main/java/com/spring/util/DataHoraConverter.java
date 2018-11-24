@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DataHoraConverter {
 	
@@ -42,5 +43,11 @@ public class DataHoraConverter {
 //		LocalDate data = LocalDate.parse(dataHoraAtual, formatoDeData);
         
 		return dataHoraAtual;
+	}
+	
+	
+	public static Date dataVencimentoTestes() {
+		Date date = new Date();
+		return date;
 	}
 }
