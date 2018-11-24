@@ -20,40 +20,40 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.event.RecursoCriadoEvent;
-import com.spring.model.Usuario;
-import com.spring.repository.UsuarioRepository;
-import com.spring.service.UsuarioService;
+import com.spring.model.TipoLancamento;
+import com.spring.repository.TipoLancamentoRepository;
+import com.spring.service.TipoLancamentoService;
 
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioResource {
+@RequestMapping("/tipo-lancamento")
+public class TipoLancamentoResource {
 	
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private TipoLancamentoRepository tipoLancamentoRepository;
     
     @Autowired
-    private UsuarioService usuarioService;
+    private TipoLancamentoService tipoLancamentoService;
     
     @Autowired
     private ApplicationEventPublisher publisher;
 
     @GetMapping
-    public List<Usuario> getlist(){
-            return usuarioRepository.findAll();
+    public List<TipoLancamento> getlist(){
+            return tipoLancamentoRepository.findAll();
     }
     
     @PostMapping
-    public ResponseEntity<Usuario> save(@Valid @RequestBody Usuario usuario, HttpServletResponse response) {
-    	Usuario usuarioSalvo = usuarioRepository.save(usuario);
-    	publisher.publishEvent(new RecursoCriadoEvent(this, response, usuarioSalvo.getId()));
-    	return ResponseEntity.status(HttpStatus.CREATED).body(usuarioSalvo);
+    public ResponseEntity<TipoLancamento> save(@Valid @RequestBody TipoLancamento tipoLancamento, HttpServletResponse response) {
+    	TipoLancamento tipoLancamentoSalvo = tipoLancamentoRepository.save(tipoLancamento);
+    	publisher.publishEvent(new RecursoCriadoEvent(this, response, tipoLancamentoSalvo.getId()));
+    	return ResponseEntity.status(HttpStatus.CREATED).body(tipoLancamentoSalvo);
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> getById(@PathVariable Long id) {
-    	Usuario usuario = usuarioRepository.getOne(id);
-    	if (usuario != null)
-			return ResponseEntity.ok(usuario);
+    public ResponseEntity<TipoLancamento> getById(@PathVariable Long id) {
+    	TipoLancamento tipoLancamento = tipoLancamentoRepository.getOne(id);
+    	if (tipoLancamento != null)
+			return ResponseEntity.ok(tipoLancamento);
 		else
 			return ResponseEntity.notFound().build();
     }
@@ -61,12 +61,12 @@ public class UsuarioResource {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long id) {
-    	usuarioRepository.deleteById(id);
+    	tipoLancamentoRepository.deleteById(id);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> update(@PathVariable Long id, @Valid @RequestBody Usuario usuario){
-    	Usuario usuarioSalvo = usuarioService.atualizar(id, usuario);
-		return ResponseEntity.ok(usuarioSalvo);
+    public ResponseEntity<TipoLancamento> update(@PathVariable Long id, @Valid @RequestBody TipoLancamento tipoLancamento){
+    	TipoLancamento tipoLancamentoSalvo = tipoLancamentoService.atualizar(id, tipoLancamento);
+		return ResponseEntity.ok(tipoLancamentoSalvo);
     }  
 }

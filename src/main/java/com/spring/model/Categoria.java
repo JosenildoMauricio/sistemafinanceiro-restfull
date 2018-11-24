@@ -7,40 +7,37 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @Entity
-@Table(name = "usuario")
-public class Usuario implements Serializable {
-	
+@Table(name = "categoria_lancamento")
+public class Categoria implements Serializable {
+
 	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	
 	@NotNull
-	@Column(name="nome", unique=true)
+	@Column(name="nome")
 	@Size(min = 1, max = 45)
 	private String nome;
 	
 	@NotNull
-	@Email
-	@Column(name="email", unique=true)
-	private String email;
-	
-	@NotNull
-	@Column(name="senha")
-	@Size(min = 6, max = 16)
-	private String senha;
-	
-	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private TipoLancamento tipo;
 
+
+	
 	public Long getId() {
 		return id;
 	}
@@ -53,18 +50,7 @@ public class Usuario implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+	
 	
 	
 	@Override
@@ -74,7 +60,6 @@ public class Usuario implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -83,7 +68,7 @@ public class Usuario implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Categoria other = (Categoria) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
