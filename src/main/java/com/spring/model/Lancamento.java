@@ -52,6 +52,11 @@ public class Lancamento implements Serializable{
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
+	
 	
 	
 	public Long getId() {
@@ -96,6 +101,14 @@ public class Lancamento implements Serializable{
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	
 	
 	
 	

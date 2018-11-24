@@ -33,7 +33,7 @@ public class Categoria implements Serializable {
 	
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "tipo_lancamento")
 	private TipoLancamento tipo;
 
 
@@ -49,6 +49,12 @@ public class Categoria implements Serializable {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public TipoLancamento getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipoLancamento tipo) {
+		this.tipo = tipo;
 	}
 	
 	
