@@ -23,7 +23,7 @@ public class Lancamento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="id")
+	@Column(name="id_lancamento")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -44,12 +44,12 @@ public class Lancamento implements Serializable{
 	
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "id_tipo_lancamento")
 	private TipoLancamento tipo;
 	
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	
 	

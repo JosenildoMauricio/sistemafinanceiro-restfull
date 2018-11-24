@@ -14,14 +14,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "categoria_lancamento")
+@Table(name = "categoria")
 public class Categoria implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 
 	@Id
-	@Column(name="id")
+	@Column(name="id_categoria")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
