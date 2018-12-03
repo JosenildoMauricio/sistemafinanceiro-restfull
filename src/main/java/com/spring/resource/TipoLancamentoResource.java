@@ -37,7 +37,7 @@ public class TipoLancamentoResource {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    @GetMapping
+    @GetMapping("/lista-tipo-lancamento")
     public List<TipoLancamento> getlist(){
             return tipoLancamentoRepository.findAll();
     }

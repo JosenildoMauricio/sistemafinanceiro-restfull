@@ -44,6 +44,7 @@ public class LancamentoResource {
     
     @PostMapping
     public ResponseEntity<Lancamento> save(@Valid @RequestBody Lancamento lancamento, HttpServletResponse response) {
+    	System.out.println("entidade: "+ lancamento);
     	Lancamento lancamentoSalvo = lancamentoRepository.save(lancamento);
     	publisher.publishEvent(new RecursoCriadoEvent(this, response, lancamentoSalvo.getId()));
     	return ResponseEntity.status(HttpStatus.CREATED).body(lancamentoSalvo);

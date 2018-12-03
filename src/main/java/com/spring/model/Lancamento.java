@@ -14,10 +14,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.spring.util.DataHoraConverter;
 
 @Entity
 @Table(name = "lancamento")
+@JsonIgnoreProperties
 public class Lancamento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -56,6 +58,8 @@ public class Lancamento implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
+	
+	
 	
 	
 	

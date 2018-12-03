@@ -37,7 +37,7 @@ public class CategoriaResource {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    @GetMapping
+    @GetMapping("/lista-categorias")
     public List<Categoria> getlist(){
             return categoriaRepository.findAll();
     }
